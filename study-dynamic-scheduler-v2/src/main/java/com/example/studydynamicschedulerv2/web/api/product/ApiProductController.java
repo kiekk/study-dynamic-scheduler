@@ -38,11 +38,13 @@ public class ApiProductController {
     }
 
     @RequestMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody ProductForm product) throws ApiException {
         service.update(product);
     }
 
     @RequestMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
         service.remove(id);
     }
