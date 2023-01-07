@@ -31,6 +31,11 @@ public class ProductService {
         repository.save(product);
     }
 
+    public void update(ProductForm productForm) throws ApiException {
+        Product product = fetch(productForm.getId());
+        product.updateFields(productForm);
+    }
+
     public void remove(String id) {
         repository.deleteById(id);
     }

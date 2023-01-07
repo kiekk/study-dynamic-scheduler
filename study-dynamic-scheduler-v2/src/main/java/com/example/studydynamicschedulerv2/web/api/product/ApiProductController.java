@@ -38,8 +38,8 @@ public class ApiProductController {
     }
 
     @RequestMapping("{id}")
-    public void update(@RequestBody Product product) {
-        service.save(product);
+    public void update(@RequestBody ProductForm product) throws ApiException {
+        service.update(product);
     }
 
     @RequestMapping("{id}")
