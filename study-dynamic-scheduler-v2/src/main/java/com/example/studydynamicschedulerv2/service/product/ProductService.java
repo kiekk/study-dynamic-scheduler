@@ -1,5 +1,6 @@
 package com.example.studydynamicschedulerv2.service.product;
 
+import com.example.studydynamicschedulerv2.dto.ProductForm;
 import com.example.studydynamicschedulerv2.entity.Product;
 import com.example.studydynamicschedulerv2.enums.common.ApiExceptionType;
 import com.example.studydynamicschedulerv2.exception.ApiException;
@@ -25,7 +26,8 @@ public class ProductService {
         return repository.findById(id).orElseThrow(() -> new ApiException(ApiExceptionType.FAILED_TO_FETCH, "Product"));
     }
 
-    public void save(Product product) {
+    public void save(ProductForm productForm) {
+        Product product = productForm.toEntity();
         repository.save(product);
     }
 

@@ -1,9 +1,13 @@
 package com.example.studydynamicschedulerv2.entity;
 
+import com.example.studydynamicschedulerv2.dto.ProductForm;
+import com.example.studydynamicschedulerv2.util.ModelMapperUtils;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.time.LocalDateTime;
 
 @Entity
 public class Product extends BaseEntity {
@@ -28,5 +32,10 @@ public class Product extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void updateFields(ProductForm productForm) {
+        ModelMapperUtils.getModelMapper().map(productForm, this);
+        setUpdateDate(LocalDateTime.now());
     }
 }

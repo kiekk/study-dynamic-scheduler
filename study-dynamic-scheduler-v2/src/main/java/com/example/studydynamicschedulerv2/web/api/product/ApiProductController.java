@@ -1,5 +1,6 @@
 package com.example.studydynamicschedulerv2.web.api.product;
 
+import com.example.studydynamicschedulerv2.dto.ProductForm;
 import com.example.studydynamicschedulerv2.entity.Product;
 import com.example.studydynamicschedulerv2.exception.ApiException;
 import com.example.studydynamicschedulerv2.service.product.ProductService;
@@ -32,7 +33,7 @@ public class ApiProductController {
 
     @RequestMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Product product) {
+    public void save(@RequestBody ProductForm product) {
         service.save(product);
     }
 
