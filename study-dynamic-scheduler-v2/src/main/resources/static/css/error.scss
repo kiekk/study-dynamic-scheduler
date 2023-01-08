@@ -1,0 +1,55 @@
+@import "var";
+
+body {
+    background: url('../../../../../../../../../Users/soonho/Downloads/에러페이지/img/bg.svg') no-repeat 0 0;
+    background-size: cover;
+
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.error_box {
+    width: 28rem;
+    min-height: 6.25rem;
+    padding: 1.875rem;
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 0.3125rem;
+    box-shadow: 10px 10px 10px $sub_dark_color;
+    text-align: center;
+
+    img {width: 70%;}
+
+    h1.error_code {
+        font-size: 5rem;
+        line-height: 5rem;
+        margin-bottom: 1.875rem;
+        color: $main_color;
+    }
+
+    h3.error_tit {
+        font-size: 1.25rem;
+        line-height: 1.625rem;
+        margin-bottom: 1.25rem;
+        color: #161616;
+        font-weight: 500;
+    }
+
+    p.error_ex {
+        font-size: 1rem;
+        line-height: 1.375rem;
+        margin-bottom: 1.875rem;
+        color: #666;
+    }
+
+    .btn_home {
+        width: 100%;
+        font-size: 1.125rem;
+        font-weight: 500;
+    }
+}

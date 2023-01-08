@@ -1,0 +1,295 @@
+.main_box_wrapper {
+  max-width: 1280px;
+}
+
+.card_body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card_body .form_list {
+  flex-shrink: 0;
+  padding: 0.625rem 1.25rem;
+  box-sizing: border-box;
+}
+.card_body .form_list h4 {
+  margin-right: 0.625rem;
+  line-height: 2.5rem;
+  float: left;
+  color: #99a3c7;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  word-break: keep-all;
+  font-size: 0.8rem;
+}
+.card_body .form_list_1 {
+  width: 100%;
+}
+.card_body .form_list_2 {
+  width: 48.5%;
+}
+.card_body .form_list_3 {
+  width: 32%;
+}
+.card_body .input_wrap {
+  display: inline-block;
+}
+.card_body .input_wrap > input {
+  width: 100%;
+}
+.card_body .input_wrap textarea {
+  width: 100%;
+  height: 5rem;
+  padding: 0.3125rem;
+  box-sizing: border-box;
+  resize: none;
+  border-width: 1px;
+}
+.card_body .input_wrap textarea::-webkit-scrollbar {
+  width: 0.625rem;
+}
+.card_body .input_wrap textarea::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 0.625rem;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.connection_box .card_body h4 {
+  width: 6.25rem;
+}
+.connection_box .card_body .input_wrap {
+  width: calc(100% - 6.875rem);
+}
+.connection_box .card_body .cstm-switch {
+  margin: 0.625rem 0;
+}
+.connection_box .card_body .form_list_info {
+  background: #f6f8ff;
+  margin: 1.875rem 0;
+  border: 1px solid #e2e4ef;
+}
+.connection_box .card_body .form_list_info h3 {
+  color: #330e81;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin: 0.625rem 0;
+}
+.connection_box .card_body .form_list_info h4, .connection_box .card_body .form_list_info .input_wrap {
+  margin-top: 0.625rem;
+}
+.connection_box .card_body .btn_del_wrap .btn_data_delete {
+  float: right;
+}
+.connection_box .card_body.card_body_five table th {
+  width: 6.25rem;
+}
+.connection_box .card_body.card_body_five table th div, .connection_box .card_body.card_body_five table td div {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.resource_box .card_body .input_wrap {
+  width: 100%;
+}
+.resource_box .card_body .form_list.form_list_wrap {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.resource_box .card_body .form_list_1 {
+  margin-top: 2.5rem;
+}
+.resource_box .card_body .form_resourceType_sftp {
+  margin-top: 2.5rem;
+}
+
+.table {
+  border-collapse: collapse;
+}
+.table tr {
+  border-bottom: 1px solid #f3f5ff;
+}
+.table tr.new_msg {
+  background: #f3f5ff;
+}
+.table th, .table td {
+  padding: 0.625rem;
+}
+.table th {
+  color: #a7b1d4;
+  font-size: 0.7875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  vertical-align: top;
+  word-break: keep-all;
+}
+.table td {
+  color: #444;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.table td > a {
+  color: #444;
+}
+
+.keyword_list_box {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% - 4rem);
+  float: right;
+  justify-content: flex-start;
+}
+.keyword_list_box li {
+  display: inline-block;
+  width: calc((100% - 6rem) / 3);
+  position: relative;
+  margin-left: 2rem;
+}
+.keyword_list_box li input.form_control {
+  width: 90%;
+  padding: 0 1.875rem 0 0.3125rem;
+}
+.keyword_list_box li button.btn_keyword_del {
+  display: inline-block;
+  width: 1.875rem;
+  line-height: 2.5rem;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #999;
+}
+.keyword_list_box li button.btn_keyword_del:hover {
+  color: #000;
+}
+
+.btn_wrap {
+  width: 100%;
+}
+.btn_wrap.btn_form_box a.btn_design {
+  margin-left: 0.625rem;
+}
+.btn_wrap .btn_cancel {
+  background-color: #ddd;
+  color: #444;
+}
+.btn_wrap .btn_edit {
+  background-color: #330e81;
+  color: #fff;
+}
+.btn_wrap .btn_delete {
+  background-color: #222;
+  color: #fff;
+}
+
+.file_info_box .form_list {
+  padding: 0.625rem 0;
+}
+.file_info_box .access_radio_box {
+  overflow: hidden;
+}
+.file_info_box .access_radio_box label {
+  display: inline-block;
+  line-height: 2.5rem;
+  font-size: 0.9rem;
+  margin-right: 1.25rem;
+  cursor: pointer;
+}
+.file_info_box .access_radio_box label input[type=radio] {
+  display: none;
+}
+.file_info_box .access_radio_box label span {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  border: 1px solid #ced4ee;
+  vertical-align: middle;
+  margin-right: 0.3125rem;
+  box-sizing: border-box;
+}
+.file_info_box .access_radio_box label input[type=radio]:checked ~ span {
+  border: 0.25rem solid #694cff;
+}
+.file_info_box .margin_top_30 {
+  margin-top: 1.875rem;
+}
+.file_info_box .margin_top_30 .product_info_add {
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 0.9rem;
+  width: auto;
+  padding: 0 0.625rem;
+}
+.file_info_box .product_info_table {
+  border: 1px solid #ced4ee;
+}
+.file_info_box .product_info_table tr {
+  border: 0;
+}
+.file_info_box .product_info_table tr.border_add {
+  border-bottom: 1px solid #ced4ee;
+}
+.file_info_box .product_info_table th.product_info_tit {
+  background: #f3f5ff;
+  border-right: 1px solid #ced4ee;
+  vertical-align: middle;
+  text-align: center;
+}
+.file_info_box .product_info_table th, .file_info_box .product_info_table td {
+  padding: 0.625rem;
+  line-height: 2rem;
+}
+.file_info_box .product_info_table th .form_control, .file_info_box .product_info_table td .form_control {
+  line-height: 2rem;
+  height: 2rem;
+  width: 100%;
+}
+.file_info_box .product_info_table th.border_add_left, .file_info_box .product_info_table td.border_add_left {
+  border-left: 1px solid #ced4ee;
+  text-align: center;
+}
+.file_info_box .product_info_table th.border_add_left {
+  background: #f3f5ff;
+}
+.file_info_box .product_info_table td.border_add_left input[type=checkbox] {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+.file_info_box .file_info_add {
+  margin: 2.5rem 0;
+}
+
+.http_box .table {
+  border-top: 1px solid #eee;
+}
+.http_box .table tr {
+  border-bottom: 1px solid #eee;
+}
+.http_box .table th {
+  vertical-align: middle;
+  background: #f3f5ff;
+  width: 50%;
+}
+.http_box .table th.btn_th {
+  width: 4rem;
+}
+.http_box .table .input_wrap {
+  width: 90%;
+}
+.http_box .table .input_wrap input {
+  border-width: 1px;
+}
+.http_box .table button {
+  float: right;
+}
+.http_box.http_parameters_wrap {
+  margin-top: 2.5rem;
+}/*# sourceMappingURL=connection_sub.css.map */

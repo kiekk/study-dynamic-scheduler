@@ -1,0 +1,314 @@
+@import "var.scss";
+
+.main_box_wrapper {max-width: 1280px;}
+
+.card_body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .form_list {
+        flex-shrink: 0;
+        padding: 0.625rem 1.25rem;
+        box-sizing: border-box;
+
+        h4 {
+            margin-right: 0.625rem;
+            line-height: 2.5rem;
+            float: left;
+            color: #99a3c7;
+            letter-spacing: 0.06rem;
+            text-transform: uppercase;
+            word-break: keep-all;
+            font-size: 0.8rem;
+        }
+    }
+
+    .form_list_1 {width: 100%;}
+    .form_list_2 {width: 48.5%;}
+    .form_list_3 {width: 32%;}
+
+
+    .input_wrap {
+        display: inline-block;
+
+        &>input {width: 100%;}
+
+        textarea {
+            width: 100%;
+            height: 5rem;
+            padding: 0.3125rem;
+            box-sizing: border-box;
+            resize: none;
+            border-width: 1px;
+
+            &::-webkit-scrollbar {width: 0.625rem;}
+    
+            &::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+                border-radius: 0.625rem;
+                background-clip: padding-box;
+                border: 2px solid transparent;
+            }
+        }
+    }
+}
+
+.connection_box .card_body {
+    h4 {width: 6.25rem;}
+
+    .input_wrap {width: calc(100% - 6.875rem);}
+
+    .cstm-switch {margin: 0.625rem 0;}
+
+    .form_list_info {
+        background: #f6f8ff;
+        margin: 1.875rem 0;
+        border: 1px solid #e2e4ef;
+
+        h3 {
+            color: $main_color;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            margin: 0.625rem 0;
+        }
+
+        h4, .input_wrap {margin-top: 0.625rem;}
+    }
+
+    .btn_del_wrap .btn_data_delete {float: right;}
+
+    &.card_body_five {
+        table {
+            th {width: 6.25rem;}
+
+            th, td {
+                div {
+                    width: 100%;
+                    overflow-x: auto;
+                }
+            }
+        }
+    }
+}
+
+.resource_box .card_body {
+    .input_wrap {width: 100%;}
+
+    .form_list.form_list_wrap {
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .form_list_1 {margin-top: 2.5rem;}
+    .form_resourceType_sftp {margin-top: 2.5rem;}
+}
+
+.table {
+    border-collapse: collapse;
+
+    tr {
+        border-bottom : 1px solid $bg_color;
+    
+        &.new_msg {background: $bg_color;}
+    }
+
+    th, td {padding: 0.625rem;}
+
+    th {
+        color: $focus_color;
+        font-size: .7875rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        text-align: left;
+        vertical-align: top;
+        word-break: keep-all;
+    }
+
+    td {
+        color: #444;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+
+        &>a {color: #444;}
+    }
+}
+
+.keyword_list_box {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 4rem);
+    float: right;
+    justify-content: flex-start;
+
+    li {
+        display: inline-block;
+        width: calc((100% - 6rem) / 3);
+        position: relative;
+        margin-left: 2rem;
+
+        input.form_control {
+            width: 100%;
+            padding: 0 1.875rem 0 0.3125rem;
+        }
+        button.btn_keyword_del {
+            display: inline-block;
+            width: 1.875rem;
+            line-height: 2.5rem;
+            background: none;
+            border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #999;
+
+            &:hover {color: #000;}
+        }
+    }
+}
+    
+.btn_wrap {
+    width: 100%;
+
+    &.btn_form_box {
+        a.btn_design {
+            margin-left: 0.625rem;
+        }
+    }
+
+    .btn_cancel {
+        background-color: #ddd;
+        color: #444;
+    }
+    .btn_edit {
+        background-color: $main_color;
+        color: #fff;
+    }
+    .btn_delete {
+        background-color: #222;
+        color: #fff;
+    }
+}
+
+.file_info_box {
+
+    .form_list {padding: 0.625rem 0;}
+
+    .access_radio_box {
+        overflow: hidden;
+    
+        label {
+            display: inline-block;
+            line-height: 2.5rem;
+            font-size: 0.9rem;
+            margin-right: 1.25rem;
+            cursor: pointer;
+    
+            input[type='radio'] {display: none;}
+    
+            span {
+                display: inline-block;
+                width: 0.875rem;
+                height: 0.875rem;
+                border-radius: 50%;
+                border: 1px solid $border_color;
+                vertical-align: middle;
+                margin-right: 0.3125rem;
+                box-sizing: border-box;
+            }
+    
+            input[type='radio']:checked~span {
+                border: 0.25rem solid $sub_bright_color;
+            }
+        }
+    }
+    
+    .margin_top_30 {
+        margin-top: 1.875rem;
+    
+        .product_info_add {
+            height:2rem;
+            line-height: 2rem;
+            font-size: 0.9rem;
+            width: auto;
+            padding: 0 0.625rem;
+        }
+    }
+    
+    .product_info_table {
+        border: 1px solid $border_color;
+    
+        tr {
+            border: 0;
+            &.border_add {border-bottom: 1px solid $border_color;}
+        }
+    
+        th {
+            &.product_info_tit {
+                background: $bg_color;
+                border-right: 1px solid $border_color;
+                vertical-align: middle;
+                text-align: center;
+            }
+        }
+    
+        th, td {
+            padding: 0.625rem;
+            line-height: 2rem;
+    
+            .form_control {
+                line-height: 2rem;
+                height: 2rem;
+                width: 100%;
+            }
+    
+            &.border_add_left {
+                border-left: 1px solid $border_color;
+                text-align: center;
+            }
+        }
+    
+        th.border_add_left {background: $bg_color;}
+        td.border_add_left {
+            input[type='checkbox'] {
+                width: 1rem;
+                height: 1rem;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .file_info_add {
+        margin: 2.5rem 0;
+    }
+}
+
+.http_box {
+    .table {
+        border-top: 1px solid #eee;
+
+        tr {border-bottom: 1px solid #eee;}
+
+        th {
+            vertical-align: middle;
+            background: $bg_color;
+            width: 50%;
+
+            &.btn_th {width: 4rem;}
+        }
+
+        .input_wrap {
+            width: 90%;
+
+            input {border-width: 1px;}
+        }
+
+        button {float: right;}
+    }
+
+    &.http_parameters_wrap {margin-top: 2.5rem;}
+}
