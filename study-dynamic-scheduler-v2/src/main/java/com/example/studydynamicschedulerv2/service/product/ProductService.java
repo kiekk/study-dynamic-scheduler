@@ -40,4 +40,8 @@ public class ProductService {
         repository.deleteById(id);
     }
 
+    public void removeAll() {
+        repository.deleteAll();
+    }
+
 }
