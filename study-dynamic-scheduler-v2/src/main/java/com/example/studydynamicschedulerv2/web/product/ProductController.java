@@ -1,12 +1,13 @@
 package com.example.studydynamicschedulerv2.web.product;
 
+import com.example.studydynamicschedulerv2.web.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("product")
-public class ProductController {
+public class ProductController extends BaseController {
 
     @RequestMapping(value = {"", "/"})
     public String index() {
