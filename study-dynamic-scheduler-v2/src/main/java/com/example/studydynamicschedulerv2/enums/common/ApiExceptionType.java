@@ -3,6 +3,7 @@ package com.example.studydynamicschedulerv2.enums.common;
 import org.springframework.http.HttpStatus;
 
 public enum ApiExceptionType {
+    INVALID_PARAMETER(HttpStatus.BAD_REQUEST, "#0 항목은 #1"),
     FAILED_TO_FETCH(HttpStatus.BAD_REQUEST, "요청 데이터와 일치하는 #0 정보가 존재하지 않습니다.");
 
     private final HttpStatus status;

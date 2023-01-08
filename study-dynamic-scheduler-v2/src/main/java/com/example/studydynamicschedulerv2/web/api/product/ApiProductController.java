@@ -2,9 +2,13 @@ package com.example.studydynamicschedulerv2.web.api.product;
 
 import com.example.studydynamicschedulerv2.dto.ProductForm;
 import com.example.studydynamicschedulerv2.entity.Product;
+import com.example.studydynamicschedulerv2.enums.common.ApiExceptionType;
 import com.example.studydynamicschedulerv2.exception.ApiException;
 import com.example.studydynamicschedulerv2.service.product.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +37,12 @@ public class ApiProductController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody ProductForm product) {
+    public void save(@Valid  @RequestBody ProductForm product, BindingResult bindingResult) throws ApiException {
+
+        if(bindingResult.hasErrors()) {
+            FieldError fieldError = bindingResult.getFieldErrors().get(0);
+            throw new ApiException(ApiExceptionType.INVALID_PARAMETER, fieldError.getField(), fieldError.getDefaultMessage());
+        }
         service.save(product);
     }
 
