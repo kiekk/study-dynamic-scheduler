@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Dynamic Scheduler Test</title>
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/side_box.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/font/materialdesignicons.min.css">
+    <script src="https://kit.fontawesome.com/7b4fe49f21.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/js/moment/moment.min.js"></script>
+    <script type="text/javascript" src="/js/moment/locales.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-validation-1.19.3/jquery.validate.js"></script>
+    <script type="text/javascript" src="/js/jquery-validation-1.19.3/additional-methods.js"></script>
+    <script type="text/javascript" src="/js/jquery-validation-1.19.3/localization/messages_ko.js"></script>
+    <style>
+        table tbody th {
+            font-size: 12px;
+            background-color: rgba(210, 221, 236, .1);
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        .admin-main {
+            padding-top: 0 !important;
+        }
+    </style>
+    <th:block layout:fragment="script"></th:block>
+</head>
+
+<body>
+
+<div class="wrapper">
+    <div th:replace="~{/fragments/common/sidebar :: sidebar}"></div>
+    <th:block layout:fragment="content"></th:block>
+</div>
+</body>
+</html>
