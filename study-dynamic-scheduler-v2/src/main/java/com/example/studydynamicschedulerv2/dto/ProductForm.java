@@ -2,9 +2,12 @@ package com.example.studydynamicschedulerv2.dto;
 
 import com.example.studydynamicschedulerv2.entity.Product;
 import com.example.studydynamicschedulerv2.util.ModelMapperUtils;
+import jakarta.validation.constraints.NotNull;
 
 public class ProductForm {
     private String id;
+
+    @NotNull
     private String title;
 
     public String getId() {
