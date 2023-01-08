@@ -19,31 +19,31 @@ public class ApiProductController {
         this.service = service;
     }
 
-    @RequestMapping("")
+    @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> search() {
         return service.search();
     }
 
-    @RequestMapping("{id}")
+    @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Product fetch(@PathVariable String id) throws ApiException {
         return service.fetch(id);
     }
 
-    @RequestMapping("")
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody ProductForm product) {
         service.save(product);
     }
 
-    @RequestMapping("{id}")
+    @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody ProductForm product) throws ApiException {
         service.update(product);
     }
 
-    @RequestMapping("{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
         service.remove(id);
