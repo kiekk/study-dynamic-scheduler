@@ -1,0 +1,18 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+
+<div layout:fragment="content" class="main_box">
+
+    <div th:replace="fragments/common/content-header :: content-header('Product')"></div>
+
+    <div class="main_box_wrapper">
+        <div class="btn_wrap">
+            <a th:href="@{/product/register}" class="btn_design btn_icon btn_add">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+    </div>
+</div>
+</html>
