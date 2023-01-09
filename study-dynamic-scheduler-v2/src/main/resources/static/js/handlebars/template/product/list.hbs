@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+    <tr class="tb_tit">
+        <th>No</th>
+        <th>Title</th>
+        <th>Create Date</th>
+        <th>Update Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each list}}
+        <tr>
+            <td>{{increment @index}}</td>
+            <td>
+                <a href="/product/edit/{{id}}">{{title}}</a>
+            </td>
+            <td style="text-align: center;">{{dateFormat createDate 'YYYYMMDDHHmmss' 'YYYY-MM-DD HH:mm:ss'}}</td>
+            <td style="text-align: center;">{{dateFormat updateDate 'YYYYMMDDHHmmss' 'YYYY-MM-DD HH:mm:ss'}}</td>
+        </tr>
+    {{else}}
+        <tr>
+            <td colspan="4" style="text-align: center;">조회된 결과가 없습니다.</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

@@ -3,6 +3,31 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout.html}">
 
+<th:block layout:fragment="script">
+    <link rel="stylesheet" href="/css/connection.css">
+    <script type="text/javascript" src="/js/modules/product/productService.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            productService.search(
+                {},
+                (result) => {
+                    var listTemplate = Handlebars.getTemplate('product/list');
+                    var listTemplateOption = {
+                        list: result,
+                    }
+                    var listHtml = listTemplate(listTemplateOption);
+                    $('#product-list').html(listHtml);
+                },
+                (error) => {
+                    if (error) {
+                        alert(error.message);
+                        console.error(error);
+                    }
+                }
+            );
+        });
+    </script>
+</th:block>
 <div layout:fragment="content" class="main_box">
 
     <div th:replace="fragments/common/content-header :: content-header('Product')"></div>
@@ -13,6 +38,7 @@
                 <i class="fa-solid fa-plus"></i>
             </a>
         </div>
+        <div id="product-list" class="table_wrap"></div>
     </div>
 </div>
 </html>
