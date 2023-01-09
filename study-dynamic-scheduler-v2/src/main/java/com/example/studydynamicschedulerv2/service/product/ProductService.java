@@ -6,10 +6,12 @@ import com.example.studydynamicschedulerv2.enums.common.ApiExceptionType;
 import com.example.studydynamicschedulerv2.exception.ApiException;
 import com.example.studydynamicschedulerv2.repository.product.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
 
     private final ProductRepository repository;

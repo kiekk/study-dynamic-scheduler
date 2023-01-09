@@ -1,0 +1,73 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+
+<th:block layout:fragment="script">
+    <link rel="stylesheet" href="/css/connection_sub.css">
+    <script type="text/javascript" src="/js/modules/product/productService.js"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            productService.fetch(
+                [[${productId}]],
+                (result) => {
+                    var template = Handlebars.getTemplate('product/item');
+                    var templateOption = {
+                        item: result,
+                    }
+                    var html = template(templateOption);
+                    $('#product-item').html(html);
+
+                    var $editForm = $('#edit-form');
+                    var $btnEdit = $('.btn-edit', $editForm);
+
+                    $btnEdit.on('click', () => {
+                        $editForm.submit();
+                    });
+
+                    $editForm.validate({
+                        validClass: 'is_valid',
+                        errorClass: 'is_error',
+                        errorPlacement(error, element) {
+                            $(error).addClass('alert_no_input');
+                            element.after(error);
+                        },
+                        submitHandler() {
+                            if (!confirm('수정하시겠습니까?')) {
+                                return;
+                            }
+
+                            productService.update(
+                                {
+                                    productId: [[${productId}]],
+                                    params: JSON.stringify($editForm.serializeObject())
+                                }
+                                , () => {
+                                    alert("수정 되었습니다.");
+                                    location.reload();
+                                }
+                                , (error) => {
+                                    if (error) {
+                                        alert(error.message);
+                                        console.error(error);
+                                    }
+                                }
+                            );
+                        }
+                    });
+                }
+            );
+        });
+    </script>
+</th:block>
+
+<section layout:fragment="content" class="main_box resource_box">
+    <div class="container_box">
+        <div class="main_box_wrapper">
+            <div th:replace="~{fragments/common/content-header :: content-header('Product')}"></div>
+            <div id="product-item"></div>
+        </div>
+    </div>
+</section>
+</html>

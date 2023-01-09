@@ -1,0 +1,17 @@
+{{#with item}}
+    <form id="edit-form">
+        <div class="card_body">
+            <section class="form_list form_list_3">
+                <h4>Title</h4>
+                <div class="input_wrap">
+                    <input type="text" class="required form_control" name="title" value="{{title}}">
+                </div>
+            </section>
+        </div>
+
+        <div class="btn_wrap btn_form_box">
+            <a href="/product/list" class="btn_design btn_cancel">취소</a>
+            <a class="btn_design btn-edit">수정</a>
+        </div>
+    </form>
+{{/with}}

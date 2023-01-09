@@ -2,13 +2,13 @@
 <div th:fragment="sidebar" class="side_box">
     <ul class="side_nav">
         <li th:classappend="${#strings.startsWith(requestURI, '/scheduler') ? 'link_now' : null}">
-            <a th:href="@{/connection}" class="link_nav link_connection">
+            <a th:href="@{/scheduler}" class="link_nav link_connection">
                 <img src="/img/icon_connect.svg" alt="스케줄러 페이지 아이콘"/>
                 <span>Product Scheduler</span>
             </a>
         </li>
         <li th:classappend="${#strings.startsWith(requestURI, '/product') ? 'link_now' : null}">
-            <a th:href="@{/resource}" class="link_nav link_connection">
+            <a th:href="@{/product}" class="link_nav link_connection">
                 <img src="/img/icon_resource.svg" alt="프로덕트 페이지 아이콘"/>
                 <span>Product</span>
             </a>

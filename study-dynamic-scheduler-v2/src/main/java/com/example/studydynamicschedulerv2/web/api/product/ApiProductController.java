@@ -48,7 +48,9 @@ public class ApiProductController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody ProductForm product) throws ApiException {
+    public void update(@PathVariable String id,
+                       @RequestBody ProductForm product) throws ApiException {
+        product.setId(id);
         service.update(product);
     }
 
