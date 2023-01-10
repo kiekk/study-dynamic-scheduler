@@ -93,6 +93,9 @@
                                 return;
                             }
 
+                            var $enabled = $('input[name="enabled"]', $editForm);
+                            $enabled.val($enabled.is(':checked'));
+
                             productSchedulerService.update(
                                 {
                                     productSchedulerId: [[${productSchedulerId}]],

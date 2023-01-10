@@ -16,7 +16,37 @@
                         list: result,
                     }
                     var listHtml = listTemplate(listTemplateOption);
-                    $('#product-scheduler-list').html(listHtml);
+                    var $productSchedulerList = $('#product-scheduler-list')
+                    $productSchedulerList.html(listHtml);
+
+                    var $enabled = $('.scheduler-enabled', $productSchedulerList);
+
+                    $enabled.on('change', function (event) {
+                        var enabled = event.target.checked;
+                        var schedulerId = $(this).data('id');
+
+                        if (enabled) {
+                            productSchedulerService.resume(
+                                schedulerId
+                                , null
+                                , (error) => {
+                                    if (error) {
+                                        alert(error.message);
+                                        location.reload();
+                                    }
+                                });
+                        } else {
+                            productSchedulerService.pause(
+                                schedulerId
+                                , null
+                                , (error) => {
+                                    if (error) {
+                                        alert(error.message);
+                                        location.reload();
+                                    }
+                                });
+                        }
+                    });
                 },
                 (error) => {
                     if (error) {

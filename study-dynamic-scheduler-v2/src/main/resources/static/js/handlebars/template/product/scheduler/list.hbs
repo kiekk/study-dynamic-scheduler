@@ -4,6 +4,7 @@
         <th>No</th>
         <th>Title</th>
         <th>Product Title</th>
+        <th>Enabled</th>
         <th>Create Date</th>
         <th>Update Date</th>
     </tr>
@@ -15,13 +16,24 @@
             <td>
                 <a href="/product-scheduler/edit/{{id}}">{{name}}</a>
             </td>
+            <td>
+                <label class="cstm-switch">
+                    <input type="checkbox" name="enabled"
+                        {{#if enabled}}
+                           checked
+                        {{/if}}
+                           class="cstm-switch-input scheduler-enabled"
+                           data-id="{{id}}">
+                    <span class="cstm-switch-indicator bg-success"></span>
+                </label>
+            </td>
             <td style="text-align: center;">{{product.title}}</td>
             <td style="text-align: center;">{{dateFormat createDate 'YYYYMMDDHHmmss' 'YYYY-MM-DD HH:mm:ss'}}</td>
             <td style="text-align: center;">{{dateFormat updateDate 'YYYYMMDDHHmmss' 'YYYY-MM-DD HH:mm:ss'}}</td>
         </tr>
     {{else}}
         <tr>
-            <td colspan="5" style="text-align: center;">조회된 결과가 없습니다.</td>
+            <td colspan="6" style="text-align: center;">조회된 결과가 없습니다.</td>
         </tr>
     {{/each}}
     </tbody>

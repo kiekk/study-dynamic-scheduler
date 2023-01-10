@@ -76,6 +76,9 @@
                         return;
                     }
 
+                    var $enabled = $('input[name="enabled"]', $registerForm);
+                    $enabled.val($enabled.is(':checked'));
+
                     productSchedulerService.insert(
                         JSON.stringify($registerForm.serializeObject())
                         , () => {
@@ -124,6 +127,15 @@
                         <h4>EXPRESSION</h4>
                         <div class="input_wrap">
                             <input type="text" class="required form_control" name="expression"/>
+                        </div>
+                    </section>
+                    <section class="form_list form_list_2">
+                        <h4>Enabled</h4>
+                        <div class="input_wrap">
+                            <label class="cstm-switch">
+                                <input type="checkbox" name="enabled" class="cstm-switch-input scheduler-enabled" value="false">
+                                <span class="cstm-switch-indicator bg-success"></span>
+                            </label>
                         </div>
                     </section>
                 </div>
