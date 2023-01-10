@@ -6,6 +6,7 @@ import com.example.studydynamicschedulerv2.entity.scheduler.ProductScheduler;
 import com.example.studydynamicschedulerv2.enums.common.ApiExceptionType;
 import com.example.studydynamicschedulerv2.exception.ApiException;
 import com.example.studydynamicschedulerv2.repository.product.ProductSchedulerRepository;
+import com.example.studydynamicschedulerv2.service.job.JobService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -21,10 +22,12 @@ public class ProductSchedulerService {
     private EntityManager em;
     private final ProductSchedulerRepository repository;
     private final ProductService productService;
+    private final JobService jobService;
 
-    public ProductSchedulerService(ProductSchedulerRepository repository, ProductService productService) {
+    public ProductSchedulerService(ProductSchedulerRepository repository, ProductService productService, JobService jobService) {
         this.repository = repository;
         this.productService = productService;
+        this.jobService = jobService;
     }
 
     public List<ProductScheduler> search() {
@@ -41,6 +44,8 @@ public class ProductSchedulerService {
 
         productScheduler.setProduct(product);
         repository.save(productScheduler);
+
+        jobService.register(productScheduler);
     }
 
     public void update(ProductSchedulerForm productSchedulerForm) throws ApiException {
@@ -52,9 +57,25 @@ public class ProductSchedulerService {
 
         productScheduler.updateFields(productSchedulerForm);
         productScheduler.setProduct(product);
+
+        jobService.update(productScheduler);
     }
 
-    public void remove(String id) {
+    public void remove(String id) throws ApiException {
         repository.deleteById(id);
+
+        jobService.delete(id);
+    }
+
+    public void resume(String id) throws ApiException {
+        ProductScheduler productScheduler = fetch(id);
+        productScheduler.resume();
+        jobService.resume(productScheduler);
+    }
+
+    public void pause(String id) throws ApiException {
+        ProductScheduler productScheduler = fetch(id);
+        productScheduler.pause();
+        jobService.pause(productScheduler.getId());
     }
 }

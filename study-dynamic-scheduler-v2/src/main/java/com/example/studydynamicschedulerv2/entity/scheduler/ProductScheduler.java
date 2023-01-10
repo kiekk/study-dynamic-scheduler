@@ -84,4 +84,12 @@ public class ProductScheduler extends BaseEntity {
         ModelMapperUtils.getModelMapper().map(productSchedulerForm, this);
         setUpdateDate(LocalDateTime.now());
     }
+
+    public void resume() {
+        enabled = true;
+    }
+
+    public void pause() {
+        enabled = false;
+    }
 }

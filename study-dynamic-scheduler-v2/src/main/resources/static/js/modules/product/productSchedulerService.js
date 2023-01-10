@@ -94,6 +94,40 @@ var productSchedulerService = (function () {
         });
     }
 
-    return {search, fetch, insert, update, delete: remove};
+    function resume(productSchedulerId, callback, error) {
+        $.ajax({
+            url: `${API_RESOURCE_URL}/${productSchedulerId}/resume`,
+            type: 'GET',
+            success() {
+                if (callback) {
+                    callback();
+                }
+            },
+            error(e) {
+                if (error) {
+                    error(e.responseJSON);
+                }
+            }
+        });
+    }
+
+    function pause(productSchedulerId, callback, error) {
+        $.ajax({
+            url: `${API_RESOURCE_URL}/${productSchedulerId}/pause`,
+            type: 'GET',
+            success() {
+                if (callback) {
+                    callback();
+                }
+            },
+            error(e) {
+                if (error) {
+                    error(e.responseJSON);
+                }
+            }
+        });
+    }
+
+    return {search, fetch, insert, update, delete: remove, resume, pause};
 
 })();

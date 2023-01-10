@@ -7,6 +7,7 @@ import com.example.studydynamicschedulerv2.exception.ApiException;
 import com.example.studydynamicschedulerv2.service.product.ProductSchedulerService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -56,8 +57,20 @@ public class ApiProductSchedulerController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void remove(@PathVariable String id) {
+    public void remove(@PathVariable String id) throws ApiException {
         service.remove(id);
+    }
+
+    @GetMapping("{id}/resume")
+    public ResponseEntity<Void> resume(@PathVariable String id) throws ApiException {
+        service.resume(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("{id}/pause")
+    public ResponseEntity<Void> pause(@PathVariable String id) throws ApiException {
+        service.pause(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
