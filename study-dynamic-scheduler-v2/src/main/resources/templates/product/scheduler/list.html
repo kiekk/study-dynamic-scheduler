@@ -1,0 +1,44 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+
+<th:block layout:fragment="script">
+    <link rel="stylesheet" href="/css/connection.css">
+    <script type="text/javascript" src="/js/modules/product/productSchedulerService.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            productSchedulerService.search(
+                {},
+                (result) => {
+                    var listTemplate = Handlebars.getTemplate('product/scheduler/list');
+                    var listTemplateOption = {
+                        list: result,
+                    }
+                    var listHtml = listTemplate(listTemplateOption);
+                    $('#product-scheduler-list').html(listHtml);
+                },
+                (error) => {
+                    if (error) {
+                        alert(error.message);
+                        console.error(error);
+                    }
+                }
+            );
+        });
+    </script>
+</th:block>
+<div layout:fragment="content" class="main_box">
+
+    <div th:replace="fragments/common/content-header :: content-header('Product-Scheduler')"></div>
+
+    <div class="main_box_wrapper">
+        <div class="btn_wrap">
+            <a th:href="@{/product-scheduler/register}" class="btn_design btn_icon btn_add">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+        <div id="product-scheduler-list" class="table_wrap"></div>
+    </div>
+</div>
+</html>
