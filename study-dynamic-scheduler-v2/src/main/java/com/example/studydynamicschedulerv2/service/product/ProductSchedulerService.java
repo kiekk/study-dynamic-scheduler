@@ -6,6 +6,8 @@ import com.example.studydynamicschedulerv2.entity.scheduler.ProductScheduler;
 import com.example.studydynamicschedulerv2.enums.common.ApiExceptionType;
 import com.example.studydynamicschedulerv2.exception.ApiException;
 import com.example.studydynamicschedulerv2.repository.product.ProductSchedulerRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.List;
 @Transactional
 public class ProductSchedulerService {
 
+    @PersistenceContext
+    private EntityManager em;
     private final ProductSchedulerRepository repository;
     private final ProductService productService;
 
@@ -42,6 +46,9 @@ public class ProductSchedulerService {
     public void update(ProductSchedulerForm productSchedulerForm) throws ApiException {
         Product product = productService.fetch(productSchedulerForm.getProductId());
         ProductScheduler productScheduler = fetch(productSchedulerForm.getId());
+
+        productScheduler.setProduct(null);
+        em.flush();
 
         productScheduler.updateFields(productSchedulerForm);
         productScheduler.setProduct(product);
