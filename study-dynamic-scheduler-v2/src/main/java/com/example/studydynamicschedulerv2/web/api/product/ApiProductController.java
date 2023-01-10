@@ -37,9 +37,9 @@ public class ApiProductController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@Valid  @RequestBody ProductForm product, BindingResult bindingResult) throws ApiException {
+    public void save(@Valid @RequestBody ProductForm product, BindingResult bindingResult) throws ApiException {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldErrors().get(0);
             throw new ApiException(ApiExceptionType.INVALID_PARAMETER, fieldError.getField(), fieldError.getDefaultMessage());
         }
