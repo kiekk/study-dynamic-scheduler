@@ -1,0 +1,110 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+
+<th:block layout:fragment="script">
+    <link rel="stylesheet" href="/css/connection_sub.css">
+    <script type="text/javascript" src="/js/modules/product/productService.js"></script>
+    <script type="text/javascript" src="/js/modules/product/productSchedulerService.js"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+
+        function createSelectTag({$tag, tagName, data}) {
+            var listTemplate = Handlebars.getTemplate('common/select');
+            var listTemplateOption = {
+                list: data,
+                tagName
+            }
+            var listHtml = listTemplate(listTemplateOption);
+            $tag.append(listHtml);
+        }
+
+        $(function () {
+            var $btnRegister = $('.btn-register');
+            var $registerForm = $('#register-form');
+            var $product = $('#product');
+
+            productService.search(
+                {},
+                (result) => {
+                    createSelectTag({
+                        $tag: $product,
+                        tagName: 'productId',
+                        data: result.map((product) => {
+                            return {'name': product.title, 'code': product.id}
+                        })
+                    });
+                }
+                , (error) => {
+                    if (error) {
+                        alert(error.message);
+                        console.error(error);
+                    }
+                });
+
+            $btnRegister.on('click', () => {
+                $registerForm.submit();
+            });
+
+            $registerForm.validate({
+                validClass: 'is_valid',
+                errorClass: 'is_error',
+                errorPlacement(error, element) {
+                    $(error).addClass('alert_no_input');
+                    element.after(error);
+                },
+                submitHandler() {
+                    if (!confirm('등록하시겠습니까?')) {
+                        return;
+                    }
+
+                    productSchedulerService.insert(
+                        JSON.stringify($registerForm.serializeObject())
+                        , () => {
+                            alert("등록 되었습니다.");
+                            location.href = '/product-scheduler/list';
+                        }
+                        , (error) => {
+                            if (error) {
+                                alert(error.message);
+                                console.error(error);
+                            }
+                        }
+                    );
+                }
+            });
+        });
+    </script>
+</th:block>
+
+<section layout:fragment="content" class="main_box resource_box">
+    <div class="container_box">
+        <div class="main_box_wrapper">
+            <div th:replace="~{fragments/common/content-header :: content-header('Product-Scheduler')}"></div>
+
+            <form id="register-form">
+                <div class="card_body">
+                    <section class="form_list form_list_3">
+                        <h4>Title</h4>
+                        <div class="input_wrap">
+                            <input type="text" class="required form_control" name="name">
+                        </div>
+                    </section>
+                    <section class="form_list form_list_2">
+                        <h4>Product</h4>
+                        <div class="input_wrap">
+                            <div id="product" class="select_custom"></div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="btn_wrap btn_form_box">
+                    <a th:href="@{/product-scheduler/list}" class="btn_design btn_cancel">취소</a>
+                    <a class="btn_design btb_edit btn-register">등록</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</html>
