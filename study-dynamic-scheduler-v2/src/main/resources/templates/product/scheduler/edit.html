@@ -1,0 +1,110 @@
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout.html}">
+
+<th:block layout:fragment="script">
+    <link rel="stylesheet" href="/css/connection_sub.css">
+    <script type="text/javascript" src="/js/modules/product/productService.js"></script>
+    <script type="text/javascript" src="/js/modules/product/productSchedulerService.js"></script>
+
+    <script id="select-partial" type="text/x-handlebars-template">
+        <select id="{{tagId}}" name="{{tagName}}" class="required select_box form_control">
+            <option value="{{null}}">-선택-</option>
+            {{#each list}}
+                {{#ifCond code '==' ../value}}
+                    <option value="{{code}}" selected>{{name}}</option>
+                {{else}}
+                    <option value="{{code}}">{{name}}</option>
+                {{/ifCond}}
+            {{/each}}
+        </select>
+    </script>
+
+
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            var productList;
+
+            productService.search(
+                {},
+                (result) => {
+                    productList = {
+                        tagId: 'product',
+                        tagName: 'productId',
+                        list: result.map((product) => {
+                            return {'name': product.title, 'code': product.id}
+                        })
+                    }
+                }
+                , (error) => {
+                    if (error) {
+                        alert(error.message);
+                        console.error(error);
+                    }
+                });
+
+            productSchedulerService.fetch(
+                [[${productSchedulerId}]],
+                (result) => {
+                    Handlebars.registerPartial("selectPartial", $('#select-partial').html())
+                    var template = Handlebars.getTemplate('product/scheduler/item');
+                    var templateOption = {
+                        item: result,
+                        productList
+                    }
+                    var html = template(templateOption);
+                    $('#product-scheduler-item').html(html);
+
+                    var $editForm = $('#edit-form');
+                    var $btnEdit = $('.btn-edit', $editForm);
+
+                    $btnEdit.on('click', () => {
+                        $editForm.submit();
+                    });
+
+                    $editForm.validate({
+                        validClass: 'is_valid',
+                        errorClass: 'is_error',
+                        errorPlacement(error, element) {
+                            $(error).addClass('alert_no_input');
+                            element.after(error);
+                        },
+                        submitHandler() {
+                            if (!confirm('수정하시겠습니까?')) {
+                                return;
+                            }
+
+                            productSchedulerService.update(
+                                {
+                                    productSchedulerId: [[${productSchedulerId}]],
+                                    params: JSON.stringify($editForm.serializeObject())
+                                }
+                                , () => {
+                                    alert("수정 되었습니다.");
+                                    location.reload();
+                                }
+                                , (error) => {
+                                    if (error) {
+                                        alert(error.message);
+                                        console.error(error);
+                                    }
+                                }
+                            );
+                        }
+                    });
+                }
+            );
+        });
+    </script>
+</th:block>
+
+<section layout:fragment="content" class="main_box resource_box">
+    <div class="container_box">
+        <div class="main_box_wrapper">
+            <div th:replace="~{fragments/common/content-header :: content-header('Product-Scheduler')}"></div>
+            <div id="product-scheduler-item"></div>
+        </div>
+    </div>
+</section>
+</html>

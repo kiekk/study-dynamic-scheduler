@@ -1,0 +1,25 @@
+{{#with item}}
+    <form id="edit-form">
+        <div class="card_body">
+            <section class="form_list form_list_3">
+                <h4>Title</h4>
+                <div class="input_wrap">
+                    <input type="text" class="required form_control" name="name" value="{{name}}">
+                </div>
+            </section>
+            <section class="form_list form_list_2">
+                <h4>Product</h4>
+                <div class="input_wrap">
+                    <div class="select_custom">
+                        {{> selectPartial tagId=@root.productList.tagId tagName=@root.productList.tagName list=@root.productList.list value=product.id}}
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="btn_wrap btn_form_box">
+            <a href="/product-scheduler/list" class="btn_design btn_cancel">취소</a>
+            <a class="btn_design btn-edit">수정</a>
+        </div>
+    </form>
+{{/with}}
