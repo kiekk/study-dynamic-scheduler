@@ -5,6 +5,7 @@
 
 <th:block layout:fragment="script">
     <link rel="stylesheet" href="/css/connection_sub.css">
+    <script type="text/javascript" src="/js/modules/enums/enumService.js"></script>
     <script type="text/javascript" src="/js/modules/product/productService.js"></script>
     <script type="text/javascript" src="/js/modules/product/productSchedulerService.js"></script>
 
@@ -24,6 +25,22 @@
             var $btnRegister = $('.btn-register');
             var $registerForm = $('#register-form');
             var $product = $('#product');
+            var $executeType = $('#execute-type');
+
+            enumsService.executeType(
+                (result) => {
+                    createSelectTag({
+                        $tag: $executeType,
+                        tagName: 'executeType',
+                        data: result
+                    });
+                }
+                , (error) => {
+                    if (error) {
+                        alert(error.message);
+                        console.error(error);
+                    }
+                });
 
             productService.search(
                 {},
@@ -95,6 +112,18 @@
                         <h4>Product</h4>
                         <div class="input_wrap">
                             <div id="product" class="select_custom"></div>
+                        </div>
+                    </section>
+                    <section class="form_list form_list_2">
+                        <h4>ExecuteType</h4>
+                        <div class="input_wrap">
+                            <div id="execute-type" class="select_custom"></div>
+                        </div>
+                    </section>
+                    <section class="form_list form_list_2">
+                        <h4>EXPRESSION</h4>
+                        <div class="input_wrap">
+                            <input type="text" class="required form_control" name="expression"/>
                         </div>
                     </section>
                 </div>

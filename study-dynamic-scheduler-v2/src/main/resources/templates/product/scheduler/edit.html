@@ -5,6 +5,7 @@
 
 <th:block layout:fragment="script">
     <link rel="stylesheet" href="/css/connection_sub.css">
+    <script type="text/javascript" src="/js/modules/enums/enumService.js"></script>
     <script type="text/javascript" src="/js/modules/product/productService.js"></script>
     <script type="text/javascript" src="/js/modules/product/productSchedulerService.js"></script>
 
@@ -25,6 +26,22 @@
     <script type="text/javascript" th:inline="javascript">
         $(function () {
             var productList;
+            var executeType;
+
+            enumsService.executeType(
+                (result) => {
+                    executeType = {
+                        tagId: 'execute-type',
+                        tagName: 'executeType',
+                        list: result
+                    }
+                }
+                , (error) => {
+                    if (error) {
+                        alert(error.message);
+                        console.error(error);
+                    }
+                });
 
             productService.search(
                 {},
@@ -51,7 +68,8 @@
                     var template = Handlebars.getTemplate('product/scheduler/item');
                     var templateOption = {
                         item: result,
-                        productList
+                        productList,
+                        executeType
                     }
                     var html = template(templateOption);
                     $('#product-scheduler-item').html(html);

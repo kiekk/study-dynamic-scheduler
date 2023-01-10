@@ -15,6 +15,20 @@
                     </div>
                 </div>
             </section>
+            <section class="form_list form_list_2">
+                <h4>ExecuteType</h4>
+                <div class="input_wrap">
+                    <div class="select_custom">
+                        {{> selectPartial tagId=@root.executeType.tagId tagName=@root.executeType.tagName list=@root.executeType.list value=executeType}}
+                    </div>
+                </div>
+            </section>
+            <section class="form_list form_list_2">
+                <h4>EXPRESSION</h4>
+                <div class="input_wrap">
+                    <input type="text" class="required form_control" name="expression" value="{{expression}}"/>
+                </div>
+            </section>
         </div>
 
         <div class="btn_wrap btn_form_box">
