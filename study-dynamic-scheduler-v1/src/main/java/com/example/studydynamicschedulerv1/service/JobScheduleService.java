@@ -86,4 +86,20 @@ public class JobScheduleService {
         }
 
     }
+
+    public void update(String id, JobSchedule schedule) throws ApiException {
+        JobSchedule jobSchedule = repository.findById(id).orElseThrow(() -> new ApiException(ApiExceptionType.FAILED_TO_FETCH, "잡"));
+
+        jobSchedule.setTriggerCron(schedule.getTriggerCron());
+        jobSchedule.setActiveYn(schedule.getActiveYn());
+
+        repository.flush();
+
+        try {
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(jobSchedule.getId()).withSchedule(CronScheduleBuilder.cronSchedule(jobSchedule.getTriggerCron())).build();
+            scheduler.rescheduleJob(new TriggerKey(jobSchedule.getId()), trigger);
+        } catch (Exception e) {
+            throw new ApiException(ApiExceptionType.FAILED_SCHEDULER, "수정");
+        }
+    }
 }

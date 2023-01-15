@@ -58,4 +58,9 @@ public class JobScheduleController {
     public void register(@PathVariable String id) throws ApiException, SchedulerException {
         service.register(id);
     }
+
+    @PutMapping("update/{id}")
+    public void update(@PathVariable String id, @RequestBody JobSchedule schedule) throws ApiException {
+        service.update(id, schedule);
+    }
 }
