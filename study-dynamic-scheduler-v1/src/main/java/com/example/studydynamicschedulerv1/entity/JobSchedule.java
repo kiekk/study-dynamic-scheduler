@@ -1,6 +1,7 @@
 package com.example.studydynamicschedulerv1.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -46,5 +47,10 @@ public class JobSchedule {
 
     public void setActiveYn(String activeYn) {
         this.activeYn = activeYn;
+    }
+
+    @JsonIgnore
+    public boolean isActive() {
+        return this.activeYn.equals("Y");
     }
 }
