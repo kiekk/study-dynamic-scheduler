@@ -15,6 +15,6 @@ v1은 Quartz 동적 스케줄러라는 블로그를 참고하여 작성했습니
 깃허브 : https://github.com/works-code/dynamic-schedule 
 
 참고한 블로그에서는 Quartz 만을 사용했지만, 
-저는 Quartz 대신 Batch를 사용하여 작성해보겠습니다.
+저는 Quartz와 Batch를 같이 사용하여 작성해보겠습니다.
 
 ```
