@@ -24,18 +24,18 @@ public class JobScheduleJobRunner extends JobRunner {
     protected void doRun(ApplicationArguments args) {
 
         // 활성화 Y인 job 목록 가져오기
-        List<JobSchedule> jobScheduleList = jobScheduleService.search().stream().filter(jobSchedule -> "Y".equals(jobSchedule.getActiveYn())).toList();
+        List<JobSchedule> jobScheduleList = jobScheduleService.search().stream().filter(JobSchedule::isActive).toList();
 
         jobScheduleList.forEach(schedule -> {
             JobDataMap jobDataMap = new JobDataMap();
             JobDetail jobDetail;
             if ("batchJob1".equals(schedule.getJobName())) {
-                jobDetail = JobBuilder.newJob(ScheduleJob1.class).withIdentity(schedule.getId(), "schedule").usingJobData(jobDataMap).build();
+                jobDetail = JobBuilder.newJob(ScheduleJob1.class).withIdentity(schedule.getJobName()).usingJobData(jobDataMap).build();
             } else {
-                jobDetail = JobBuilder.newJob(ScheduleJob2.class).withIdentity(schedule.getId(), "schedule").usingJobData(jobDataMap).build();
+                jobDetail = JobBuilder.newJob(ScheduleJob2.class).withIdentity(schedule.getJobName()).usingJobData(jobDataMap).build();
             }
 
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(schedule.getId(), "schedule").withSchedule(CronScheduleBuilder.cronSchedule(schedule.getTriggerCron())).build();
+            Trigger trigger = TriggerBuilder.newTrigger().withIdentity(schedule.getId()).withSchedule(CronScheduleBuilder.cronSchedule(schedule.getTriggerCron())).build();
 
             try {
                 scheduler.scheduleJob(jobDetail, trigger);
