@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: 'jdbc:h2:mem:dynamic-scheduler-v1'
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  sql.init:
+    mode: always
+    platform: h2
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+
+logging:
+  level:
+    org.hibernate.sql: debug
