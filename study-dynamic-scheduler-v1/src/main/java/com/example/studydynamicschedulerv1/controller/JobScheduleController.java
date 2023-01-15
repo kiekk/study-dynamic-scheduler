@@ -3,6 +3,7 @@ package com.example.studydynamicschedulerv1.controller;
 import com.example.studydynamicschedulerv1.entity.JobSchedule;
 import com.example.studydynamicschedulerv1.exception.ApiException;
 import com.example.studydynamicschedulerv1.service.JobScheduleService;
+import org.quartz.SchedulerException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,5 +52,10 @@ public class JobScheduleController {
     @PostMapping("delete")
     public void delete(JobSchedule jobSchedule) throws ApiException {
         service.delete(jobSchedule);
+    }
+
+    @GetMapping("register/{id}")
+    public void register(@PathVariable String id) throws ApiException, SchedulerException {
+        service.register(id);
     }
 }
