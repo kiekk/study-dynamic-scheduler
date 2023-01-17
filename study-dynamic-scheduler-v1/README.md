@@ -1,4 +1,4 @@
-# study-dynamic-scheduler
+# study-dynamic-scheduler-v1
 
 ### 사용 기술
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
@@ -7,10 +7,12 @@
 <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
 
 ```
-Quartz와 Spring Batch를 사용하여 동적 스케줄러를 만들어봅니다.
+v1에서는 미리 작성되어 있는 job을 수정/삭제/재등록 하는 동적 스케줄러를 작성합니다.
 
-v1은 이미 작성되어 있는 Batch Job을 수정/삭제/재등록 할 수 있는 스케줄러이며,
+v1은 Quartz 동적 스케줄러라는 블로그를 참고하여 작성했습니다.
 
-v2는 등록된 하나의 Batch Job을 가지고 전달되는 파라미터별로 새로운 스케줄러를 생성하는 스케줄러입니다.
-Airbyte와 비슷한 형식으로 만들어보았습니다.
-```
+블로그 : https://co-de.tistory.com/12
+깃허브 : https://github.com/works-code/dynamic-schedule 
+
+참고한 블로그에서는 Quartz 만을 사용했지만, 
+저는 Quartz와 Batch를 같이 사용하여 작성해보겠습니다.
